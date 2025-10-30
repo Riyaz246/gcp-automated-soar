@@ -1,0 +1,13 @@
+# Ignore GCP Credentials
+gcp-credentials.json
+
+# Ignore Terraform state files
+*.tfstate
+*.tfstate.*
+
+# Ignore local variables
+terraform.tfvars
+
+# Ignore Terraform plugin cache
+.terraform/
+*.zip
