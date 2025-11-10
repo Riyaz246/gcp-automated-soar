@@ -76,13 +76,13 @@ By using Terraform, I've proven I can build *repeatable* security solutions. By 
 
 ## Solution Architecture
 
-```mermaid
-graph TD
-    subgraph GCP Environment & Alerting
-        Alert[Cloud Logging Alert (e.g., "Leaked Key Found")] -- 1. Triggers on Match --> PubSub[Cloud Pub/Sub (Alert Topic)]
-    end
+    graph TD
 
-    subgraph GenAI-SOAR Pipeline (Cloud Function)
+    subgraph "GCP Environment & Alerting"
+        Alert["Cloud Logging Alert ('Leaked Key Found')"] -- 1. Triggers on Match --> PubSub["Cloud Pub/Sub (Alert Topic)"]
+    end
+    
+    subgraph "GenAI-SOAR Pipeline (Cloud Function)"
         PubSub -- 2. Triggers Function --> SOAR_Function[Cloud Function (genai_soar_function.py)]
         SOAR_Function -- 3. [RESPONSE] Calls API --> IAM[IAM API (Disable Key)]
         SOAR_Function -- 4. [AUDIT] Writes Log --> BigQuery[BigQuery (Audit Trail)]
